@@ -5,14 +5,14 @@ import cell from "./data/cell";
 
 const App = () => {
   return (
-    <div 
+    <div
       style={{
-        width: "20%",
+        width: "100%",
         //height: "700px"
-        height: "500px"
+        height: "300px"
       }}
     >
-      <Workbook data={[cell]} row={30} column={10}/>
+      <Workbook data={[cell]} row={10} column={10}/>
     </div>
   );
 };

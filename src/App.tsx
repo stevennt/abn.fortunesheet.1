@@ -1,18 +1,33 @@
-import { Workbook } from "@fortune-sheet/react";
-// try commenting the next line out
-import "@fortune-sheet/react/dist/index.css";
-import cell from "./data/cell";
+import React, { useEffect, useState } from 'react';
+import { Workbook } from '@fortune-sheet/react';
+import Papa from 'papaparse';
 
 const App = () => {
+  const [csvData, setCsvData] = useState([]);
+
+  useEffect(() => {
+    // Fetch CSV data from a file or an API endpoint
+    fetch('sample.csv')
+      .then(response => response.text())
+      .then(csvString => {
+        // Parse CSV data using Papa Parse library
+        const { data } = Papa.parse(csvString);
+        setCsvData(data);
+      })
+      .catch(error => {
+        console.error('Error fetching CSV data:', error);
+      });
+  }, []);
+
   return (
-    <div 
+    <div
+      key="rootbox"
       style={{
-        width: "20%",
-        //height: "700px"
-        height: "500px"
+        width: '20%',
+        height: '500px',
       }}
     >
-      <Workbook data={[cell]} row={30} column={10}/>
+      <Workbook data={csvData} row={30} column={10} />
     </div>
   );
 };

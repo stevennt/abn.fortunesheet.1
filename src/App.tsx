@@ -11,7 +11,7 @@ const App = () => {
         height: "700px"
       }}
     >
-      <Workbook data={[cell]} />
+      <Workbook data={[cell]} row={10} column={10}/>
     </div>
   );
 };
